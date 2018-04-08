@@ -2,10 +2,12 @@ const express = require('express'),
     http = require('http'),
     socketIo = require('socket.io'),
     UsersService = require('./UsersService'),
+    MessagesService = require('./MessagesService'),
     app = express(),
     server = http.createServer(app),
     io = socketIo(server),
     userService = new UsersService(),
+    messageService = new MessagesService();
     port = 3000;
 
 app.use(express.static(__dirname + '/public'));

@@ -22,7 +22,7 @@ class App extends Component {
       }
       
       messageReceive(message) {
-        const messages = [message, ...this.state.messages];
+        const messages = [...this.state.messages, message];
         this.setState({messages});
       }
 
@@ -31,7 +31,7 @@ class App extends Component {
       }
 
       handleMessageSubmit(message) {
-        const messages = [message, ...this.state.messages];
+        const messages = [...this.state.messages, message];
         this.setState({messages});
         socket.emit('message', message);
       }
@@ -39,6 +39,13 @@ class App extends Component {
       handleUserSubmit(name) {
         this.setState({name});
         socket.emit('join', name);
+      }
+
+      scrollToEnd() {
+        let ref = this.state.messages.length,
+          scrollTo = this.refs.ref;
+          console.log(this.refs);
+          console.log(scrollTo);
       }
       
       renderLayout() {
@@ -49,7 +56,7 @@ class App extends Component {
                  ChatApp
                </div>
                <div className={styles.AppRoom}>
-                 App room
+                 Hello {this.state.name}
                </div>
              </div>
              <div className={styles.AppBody}>
@@ -59,6 +66,7 @@ class App extends Component {
                <div className={styles.MessageWrapper}>
                  <MessageList
                    messages={this.state.messages}
+                   name={this.state.name}
                  />
                  <MessageForm
                    onMessageSubmit={message => this.handleMessageSubmit(message)}

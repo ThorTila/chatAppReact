@@ -5,4 +5,14 @@
     justify-content: flex-start;
     width: 75vw;
     padding: 20px;
+    overflow: auto;
+    height: 90%;
+}
+.Message {
+    color: red;
+    text-align: left;
+}
+.MessageRight {
+    color: black;
+    text-align: right;
 }
