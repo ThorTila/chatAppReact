@@ -19,10 +19,11 @@ class App extends Component {
       componentDidMount() {
         socket.on('message', message => this.messageReceive(message));
         socket.on('update', ({users}) => this.chatUpdate(users));
+        socket.on('getMessages', ({messages}) => this.messageReceive(messages));
       }
       
       messageReceive(message) {
-        const messages = [...this.state.messages, message];
+        const messages = [...this.state.messages, ...message];
         this.setState({messages});
       }
 
@@ -39,13 +40,6 @@ class App extends Component {
       handleUserSubmit(name) {
         this.setState({name});
         socket.emit('join', name);
-      }
-
-      scrollToEnd() {
-        let ref = this.state.messages.length,
-          scrollTo = this.refs.ref;
-          console.log(this.refs);
-          console.log(scrollTo);
       }
       
       renderLayout() {
