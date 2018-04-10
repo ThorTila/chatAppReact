@@ -26,14 +26,25 @@ io.on('connection', function(socket) {
           messages: messageService.getAllMessages()
         });
         io.emit('update', {
-          users: userService.getAllUsers()
+          users: userService.getAllUsers(),
+          message: [{
+            text: `${name} joined chat`,
+            from: 'system'
+          }]
         });
       });
       socket.on('disconnect', () => {
-        userService.removeUser(socket.id);
-        socket.broadcast.emit('update', {
-          users: userService.getAllUsers()
-        });
+        if(userService.getUserById(socket.id)) {
+          const user = userService.getUserById(socket.id);
+          userService.removeUser(socket.id);
+          socket.broadcast.emit('update', {
+            users: userService.getAllUsers(),
+            message: [{
+              text: `${user.name} left chat`,
+              from: 'system'
+            }]
+          });
+        }
       });
       socket.on('message', function(message){
         const {name} = userService.getUserById(socket.id);

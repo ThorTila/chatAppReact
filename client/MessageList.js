@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MessageList.css';
 
 const Message = props => (
-  <div className={(props.name === props.from ? styles.MessageRight : '') + ' ' + styles.Message}>
+  <div className={(props.name === props.from ? styles.MessageRight : props.from == 'system' ? styles.systemMessage : '') + ' ' + styles.Message}>
     <strong>{props.from} : </strong>
     <span>{props.text}</span>
   </div>

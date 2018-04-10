@@ -18,7 +18,10 @@ class App extends Component {
 
       componentDidMount() {
         socket.on('message', message => this.messageReceive(message));
-        socket.on('update', ({users}) => this.chatUpdate(users));
+        socket.on('update', ({users, message}) => {
+          this.chatUpdate(users);
+          this.messageReceive(message);
+        });
         socket.on('getMessages', ({messages}) => this.messageReceive(messages));
       }
       
