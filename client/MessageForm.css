@@ -7,5 +7,6 @@
     flex: 1;
     padding: 20px;
     border: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #333;
+    font-size: 1em;
 }

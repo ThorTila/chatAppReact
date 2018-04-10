@@ -27,6 +27,7 @@ class MessageForm extends Component {
     return(
       <form className={styles.MessageForm} onSubmit={e => this.handleSubmit(e)}>
         <input
+          autoFocus
           className={styles.MessageInput}
           onChange={e => this.changeHandler(e)}
           value={this.state.text}

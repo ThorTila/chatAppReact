@@ -21,6 +21,7 @@ class UserForm extends Component {
     return(
       <form className={styles.UserForm} onSubmit={e => this.handleSubmit(e)}>
         <input
+          autoFocus
           className={styles.UserInput}
           placeholder='Write your nickname and press enter'
           onChange={e => this.handleChange(e)}
